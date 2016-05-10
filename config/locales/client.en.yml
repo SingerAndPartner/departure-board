@@ -1,10 +1,13 @@
 en:
   js:
     filters:
-      departure_board:
+      departure:
         title: "Latest"
         title_with_count:
           one: "Latest (1)"
           other: "Latest ({{count}})"
         help: "topics with recent posts"
     departure_board:
+    topics:
+      bottom:
+        departure: "There are no more latest topics."
