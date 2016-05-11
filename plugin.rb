@@ -5,6 +5,7 @@
 # url: https://github.com/SingerAndPartner/departure-board
 
 register_asset "stylesheets/flapper.css"
+register_asset "stylesheets/departure-board.css"
 register_asset "javascripts/jquery.transform-0.9.3.js"
 register_asset "javascripts/jquery.flapper.js"
 register_asset "javascripts/departure-board.js"

@@ -67,7 +67,7 @@
         },
         
         update: function() {
-            var value = this.$ele.val().replace(/[\s|\u00a0]/g, ' ');
+            var value = this.$ele.text().replace(/[\s|\u00a0]/g, ' ');
             var digits = this.getDigits(value);
             this.digitsFinished = 0;
             
@@ -261,10 +261,7 @@
                     _this.timing_timer = null;
                     _this.$ele.trigger("digitAnimEnd");
                 } else {
-                    var duration = Math.floor(
-                            (_this.options.timing - _this.options.min_timing)
-                            / distance + _this.options.min_timing
-                    );
+                    var duration = Math.floor((_this.options.timing - _this.options.min_timing) / distance + _this.options.min_timing);
                     _this.increment(duration);
                     _this.timing_timer = setTimeout(frameFunc, duration);
                 }
