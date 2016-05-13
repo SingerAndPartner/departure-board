@@ -1,10 +1,21 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:300);
 
+
+@font-face {
+    font-family: 'FuturaLightBt';
+    src: url('/CHECKPOINT/flapper2/fonts/futura_light_bt-webfont.eot');
+    src: url('/CHECKPOINT/flapper2/fonts/futura_light_bt-webfont.eot') format('embedded-opentype'),
+         url('/CHECKPOINT/flapper2/fonts/futura_light_bt-webfont.woff') format('woff'),
+         url('/CHECKPOINT/flapper2/fonts/futura_light_bt-webfont.ttf') format('truetype'),
+         url('/CHECKPOINT/flapper2/fonts/futura_light_bt-webfont.svg#FuturaLightBt') format('svg');
+}
+
+
 /* STRUCTURAL STYLES */
 
 .flapper {
-    font-family: Roboto Condensed, sans-serif;
-    font-weight: 300;
+    font-family: 'FuturaLightBt';
+    font-weight: 400;
     box-sizing: content-box;
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
@@ -223,13 +234,13 @@
 /* XS 24x30 */
 
 .flapper.XS {
-    font-size: 28px;
-    line-height: 30px;
-    height: 34px;
+    font-size: 13px;
+    line-height: 23px;
+    height: 25px; 
 }
 
 .flapper.XS .digit {
-    border-radius: 3px;
+    border-radius: 0;
     margin: 0 0 0 2px;
 }
 
@@ -238,15 +249,17 @@
 }
 
 .flapper.XS .digit div {
-    border-radius: 1px;
+    border-radius: 0px;
 }
 
 .flapper.XS .digit,
 .flapper.XS .digit div {
-    height: 30px;
-    width: 24px;
+    height: 20px;
+    width: 12px;
     font-size: inherit;
     line-height: inherit;
+      margin: 0 1px 0 1px;
+      color:#b3b785;
 }
 
 .flapper.XS .digit .top {
@@ -254,7 +267,7 @@
 }
 
 .flapper.XS .digit .bottom {
-    clip: rect(15px, 24px, 30px, 0px); 
+    clip: rect(14px, 24px, 30px, 0px);
 }
 
 /* THEME STYLES */
@@ -263,7 +276,7 @@
 
 .flapper .digit {
     background-color: #222;
-    border: 1px solid #333;
+    border: 0px none;
 }
 
 .flapper .digit div {

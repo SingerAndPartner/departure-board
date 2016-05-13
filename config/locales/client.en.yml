@@ -1,7 +1,7 @@
 en:
   js:
     filters:
-      departure:
+      home:
         title: "Latest"
         title_with_count:
           one: "Latest (1)"

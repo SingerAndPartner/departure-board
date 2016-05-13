@@ -39,7 +39,7 @@ FlapBuffer.prototype = {
 
 };
 
-var FlapDemo = function(element) {
+var FlapDemo = function(display_selector) {
     var _this = this;
 
     var onAnimStart = function(e) {
@@ -55,26 +55,31 @@ var FlapDemo = function(element) {
     this.opts = {
         chars_preset: 'alphanum',
         align: 'left',
-        width: 20,
+        width: 40,
         on_anim_start: onAnimStart,
         on_anim_end: onAnimEnd
     };
 
     this.timers = [];
 
-    this.$displays = element;
+    this.$displays = $(display_selector);
+    this.num_lines = this.$displays.length;
 
     this.line_delay = 300;
     this.screen_delay = 7000;
 
-    element.flapper(this.opts);
+    this.$displays.flapper(this.opts);
 
-    var text = _this.cleanInput(element.text());
+    $(click_selector).click(function(e){
+        var text = _this.cleanInput(_this.$displays.text());
 
-    var buffers = _this.parseInput(text);
+        var buffers = _this.parseInput(text);
 
-    _this.stopDisplay();
-    _this.updateDisplay(buffers);
+        _this.stopDisplay();
+        _this.updateDisplay(buffers);
+
+        e.preventDefault();
+    });
 };
 
 FlapDemo.prototype = {
@@ -84,13 +89,18 @@ FlapDemo.prototype = {
     },
 
     parseInput: function(text) {
-        var buffer = new FlapBuffer(this.opts.width, 1);
-        var words = text.split(/\s/);
-        for (j in words) {
-            buffer.pushWord(words[j]);
-        }
-        buffer.flush();
+        var buffer = new FlapBuffer(this.opts.width, this.num_lines);
+        var lines = text.split(/\n/);
 
+        for (i in lines) {
+            var words = lines[i].split(/\s/);
+            for (j in words) {
+                buffer.pushWord(words[j]);
+            }
+            buffer.flush();
+        }
+
+        buffer.flush();
         return buffer.buffers;
     },
 
@@ -115,9 +125,9 @@ FlapDemo.prototype = {
                 (function(i,j) {
                     _this.timers.push(setTimeout(function(){
                         if (buffers[i][j]) {
-                            $display.text(buffers[i][j]).change();
+                            $display.val(buffers[i][j]).change();
                         } else {
-                            $display.text('').change();
+                            $display.val('').change();
                         }
                     }, timeout));
                 } (i, j));
@@ -132,17 +142,13 @@ FlapDemo.prototype = {
 };
 
 $(document).ready(function(){
-  updateFlapper();
-})
+  setTimeout(function(){
+    $('.topic-list-item .main-link a.title').addClass("XS");
+    console.log($('.topic-list-item .main-link a.title'));
+    flapperize();
+  }, 750)
+});
 
-function updateFlapper(){
-  $('.topic-list .main-link a.title').addClass("XS");
-  $('.topic-list .main-link a.title').each(function(){
-    flapperize($(this));
-  })
-}
-var time = 100;
 function flapperize(element){
-  setTimeout(function(){new FlapDemo(element);}, time);
-  time += 1500;
+  new FlapDemo('.topic-list .main-link a.title');
 }
